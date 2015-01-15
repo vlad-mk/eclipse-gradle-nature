@@ -129,7 +129,7 @@ class EclipseGradleNaturePlugin extends IdePlugin {
 	private void writeProps(file, map) {
 		def props = new Properties()
 	
-		file.parentFile.with { if(!exists()) mkdir() }
+		file.parentFile.with { if(!exists()) mkdirs() }
 	  
 		file.with {
 		  if(exists()) withInputStream { stream -> props.load(stream) }

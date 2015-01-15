@@ -2,10 +2,7 @@ eclipse-gradle-nature
 ======================
 
 [![Build Status](https://travis-ci.org/vlad-mk/eclipse-gradle-plugin.svg)](https://travis-ci.org/vlad-mk/eclipse-gradle-plugin)
-
-
 [ ![Download](https://api.bintray.com/packages/vlad-mk/gradle-plugins/eclipse-gradle-nature/images/download.svg) ](https://bintray.com/vlad-mk/gradle-plugins/eclipse-gradle-nature/_latestVersion)
-
 
 #Overview
 
@@ -30,7 +27,7 @@ buildscript {
 }
 
 plugins {
-    id 'net.vlad.eclipse-gradle-nature' version '0.1.0'
+    id 'net.vlad.eclipse-gradle-nature' version '0.1.1'
 }
 ```
 
@@ -43,7 +40,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.vlad', name: 'eclipse-gradle-nature', version: '0.1.0'
+        classpath group: 'net.vlad', name: 'eclipse-gradle-nature', version: '0.1.1'
     }
 }
 
@@ -53,8 +50,10 @@ apply plugin: 'net.vlad.eclipse-gradle-nature'
 
 ## Tasks
 
-add following tasks to the `IDE taks` group
+Plugin adds following tasks to the `IDE tasks` group
 
 * `eclipseGradle` - Generates Eclipse Gradle configuration files.
 * `cleanEclipseGradle` - Cleans Eclipse Gradle configuration files.
+
+which will be called by `eclise` and `cleanEclipse` tasks
 
