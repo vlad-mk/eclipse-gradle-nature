@@ -38,7 +38,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.vlad', name: 'net.vlad.eclipse-gradle-nature', version: '0.1.0'
+        classpath group: 'net.vlad', name: 'eclipse-gradle-nature', version: '0.1.0'
     }
 }
 

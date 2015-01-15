@@ -1,0 +1,69 @@
+plugins {
+	id 'nu.studer.plugindev' version '1.0.3'
+ }
+
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+apply plugin: 'java-gradle-plugin'
+
+
+sourceCompatibility = 1.7
+group = 'net.vlad'
+version = '0.1.0'
+
+/*
+jar {
+    manifest {
+        attributes 'EclipseGradleNaturePlugin': 'Gradle Nature Plugin for eclipse', 'Implementation-Version': version
+    }
+}
+
+sourceSets
+{
+	main {
+		groovy.srcDir 'src/main/groovy'
+	}
+	test {
+		groovy.srcDir 'src/test/groovy'
+	}
+}
+*/
+
+project.setBuildDir 'target/build'
+eclipse.classpath.defaultOutputDir = file 'target/build-eclipse'
+
+
+dependencies {
+	//compile gradleApi()
+	//compile localGroovy()
+	
+	//testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+
+task resolve {
+	//testCompile includes all other dependencies
+	description 'Resolve all configurations'
+	group 'Other'
+} << {
+	println '-' * 60
+	println version
+	println '-' * 60
+	configurations.testCompile.sort().each { File file -> println file.name }
+	println '-' * 60
+}
+
+plugindev {
+	pluginId = 'net.vlad.eclipse-gradle-nature'
+	pluginName 'eclipse-gradle-nature'
+	pluginImplementationClass 'net.vlad.plugin.EclipseGradleNaturePlugin'
+	pluginDescription 'Gradle plugin that adds gradle nature to an eclipse project.'
+	pluginLicenses 'Apache-2.0'
+	pluginTags 'gradle', 'plugin', 'eclipse'
+	authorId 'vlad-mk'
+	authorName 'Vladislav Mikerin'
+	authorEmail 'vladislav.mk@gmail.com'
+	projectUrl 'https://github.com/vlad-mk/eclipse-gradle-plugin'
+	projectInceptionYear '2015'
+	done() // do not omit this
+}
+
