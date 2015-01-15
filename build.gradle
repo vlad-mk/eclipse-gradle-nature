@@ -9,7 +9,7 @@ apply plugin: 'java-gradle-plugin'
 
 sourceCompatibility = 1.7
 group = 'net.vlad'
-version = '0.1.1'
+version = '0.1.2'
 
 /*
 jar {
