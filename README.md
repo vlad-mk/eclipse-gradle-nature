@@ -1,8 +1,8 @@
 eclipse-gradle-nature
 ======================
 
-[![Build Status](https://travis-ci.org/vlad-mk/eclipse-gradle-plugin.svg)](https://travis-ci.org/vlad-mk/eclipse-gradle-plugin)
-[ ![Download](https://api.bintray.com/packages/vlad-mk/gradle-plugins/eclipse-gradle-nature/images/download.svg) ](https://bintray.com/vlad-mk/gradle-plugins/eclipse-gradle-nature/_latestVersion)
+[![Build Status](https://travis-ci.org/vlad-mk/eclipse-gradle-nature.svg)](https://travis-ci.org/vlad-mk/eclipse-gradle-nature)
+[![Download](https://api.bintray.com/packages/vlad-mk/gradle-plugins/eclipse-gradle-nature/images/download.svg) ](https://bintray.com/vlad-mk/gradle-plugins/eclipse-gradle-nature/_latestVersion)
 
 #Overview
 

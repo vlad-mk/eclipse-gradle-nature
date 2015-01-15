@@ -62,7 +62,7 @@ plugindev {
 	authorId 'vlad-mk'
 	authorName 'Vladislav Mikerin'
 	authorEmail 'vladislav.mk@gmail.com'
-	projectUrl 'https://github.com/vlad-mk/eclipse-gradle-plugin'
+	projectUrl 'https://github.com/vlad-mk/eclipse-gradle-nature'
 	projectInceptionYear '2015'
 	done() // do not omit this
 }
