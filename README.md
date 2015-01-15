@@ -6,7 +6,6 @@ eclipse-gradle-nature
 
 [ ![Download](https://api.bintray.com/packages/vlad-mk/gradle-plugins/eclipse-gradle-nature/images/download.svg) ](https://bintray.com/vlad-mk/gradle-plugins/eclipse-gradle-nature/_latestVersion)
 
-[ ![Download](https://api.bintray.com/packages/stackmagic/maven/gradle-eclipseenhancer/images/download.svg) ](https://bintray.com/stackmagic/maven/gradle-eclipseenhancer/_latestVersion)
 
 #Overview
 
