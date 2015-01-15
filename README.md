@@ -1,6 +1,7 @@
 eclipse-gradle-nature
 ======================
 
+[![Build Status](https://travis-ci.org/vlad-mk/eclipse-gradle-plugin.svg)](https://travis-ci.org/vlad-mk/eclipse-gradle-plugin)
 
 #Overview
 

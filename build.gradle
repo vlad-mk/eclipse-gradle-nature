@@ -67,3 +67,9 @@ plugindev {
 	done() // do not omit this
 }
 
+bintray {
+	user = project.ext.has('bintrayUser') ? project.ext.bintrayUser : ''
+	key = project.ext.has('bintrayApiKey') ? project.ext.bintrayApiKey : ''
+	pkg.repo = 'gradle-plugins'
+}
+
