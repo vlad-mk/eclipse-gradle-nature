@@ -6,8 +6,8 @@ eclipse-gradle-nature
 
 #Overview
 
-[Gradle](http://www.gradle.org) plugin extending the standard [eclipse](http://gradle.org/docs/current/userguide/eclipse_plugin.html) plugin to add gradle nature to an eclipse project.
-
+[Gradle](http://www.gradle.org) plugin extending the standard [eclipse](http://gradle.org/docs/current/userguide/eclipse_plugin.html) plugin to add gradle nature to eclipse projects.
+[Gradle Tooling](http://marketplace.eclipse.org/content/gradle-integration-eclipse) musst be installed in eclipse to use such projects.
 
 downloading
 ===========
@@ -27,7 +27,7 @@ buildscript {
 }
 
 plugins {
-    id 'net.vlad.eclipse-gradle-nature' version '0.1.2'
+    id 'net.vlad.eclipse-gradle-nature' version '0.1.3'
 }
 ```
 
@@ -40,7 +40,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.vlad', name: 'eclipse-gradle-nature', version: '0.1.2'
+        classpath group: 'net.vlad', name: 'eclipse-gradle-nature', version: '0.1.3'
     }
 }
 
