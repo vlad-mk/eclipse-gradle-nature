@@ -4,6 +4,7 @@ import org.gradle.api.Project
 import org.gradle.api.Plugin
 import org.gradle.api.Task
 import org.gradle.api.DefaultTask
+import org.gradle.api.plugins.JavaBasePlugin
 import org.gradle.plugins.ide.internal.IdePlugin
 import org.gradle.plugins.ide.eclipse.EclipsePlugin
 import org.gradle.plugins.ide.eclipse.model.Classpath
@@ -79,19 +80,19 @@ class EclipseGradleNaturePlugin extends IdePlugin {
 	
     private void configureEclipsePlugin(Project project) {
 
-        //project.plugins.withType(EclipsePlugin) {
+        project.plugins.withType(JavaBasePlugin) {
             
-        project.eclipse.classpath.containers "org.springsource.ide.eclipse.gradle.classpathcontainer"
+            project.eclipse.classpath.containers "org.springsource.ide.eclipse.gradle.classpathcontainer"
 
-        if(project.eclipse.classpath.file) {
-            project.eclipse.classpath.file.whenMerged { Classpath classpath ->
-                classpath.entries.removeAll { entry -> entry.kind == 'lib' }
+            if(project.eclipse.classpath.file) {
+                project.eclipse.classpath.file.whenMerged { Classpath classpath ->
+                    classpath.entries.removeAll { entry -> entry.kind == 'lib' }
+                }
+            } 
+            project.eclipse.project {
+                natures 'org.springsource.ide.eclipse.gradle.core.nature'/*, 'org.eclipse.jdt.core.javanature'*/
             }
-        } 
-        project.eclipse.project {
-            natures 'org.springsource.ide.eclipse.gradle.core.nature'/*, 'org.eclipse.jdt.core.javanature'*/
         }
-        //}
         configureTask(project)
     }
 
