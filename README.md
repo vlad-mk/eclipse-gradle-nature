@@ -27,7 +27,7 @@ buildscript {
 }
 
 plugins {
-    id 'net.vlad.eclipse-gradle-nature' version '0.1.3'
+    id 'net.vlad.eclipse-gradle-nature' version '0.1.4'
 }
 ```
 
@@ -40,7 +40,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.vlad', name: 'eclipse-gradle-nature', version: '0.1.3'
+        classpath group: 'net.vlad', name: 'eclipse-gradle-nature', version: '0.1.4'
     }
 }
 

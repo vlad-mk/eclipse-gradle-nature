@@ -79,19 +79,19 @@ class EclipseGradleNaturePlugin extends IdePlugin {
 	
     private void configureEclipsePlugin(Project project) {
 
-        
-        project.plugins.withType(EclipsePlugin) {
+        //project.plugins.withType(EclipsePlugin) {
             
+        project.eclipse.classpath.containers "org.springsource.ide.eclipse.gradle.classpathcontainer"
+
+        if(project.eclipse.classpath.file) {
             project.eclipse.classpath.file.whenMerged { Classpath classpath ->
                 classpath.entries.removeAll { entry -> entry.kind == 'lib' }
             }
-	
-            project.eclipse.classpath.containers "org.springsource.ide.eclipse.gradle.classpathcontainer"
-			
-            project.eclipse.project {
-                natures 'org.springsource.ide.eclipse.gradle.core.nature'/*, 'org.eclipse.jdt.core.javanature'*/
-            }
+        } 
+        project.eclipse.project {
+            natures 'org.springsource.ide.eclipse.gradle.core.nature'/*, 'org.eclipse.jdt.core.javanature'*/
         }
+        //}
         configureTask(project)
     }
 
