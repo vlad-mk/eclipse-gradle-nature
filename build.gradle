@@ -44,12 +44,13 @@ task resolve {
 	//testCompile includes all other dependencies
 	description 'Resolve all configurations'
 	group 'Other'
-} << {
-	println '-' * 60
-	println version
-	println '-' * 60
-	configurations.testCompile.sort().each { File file -> println file.name }
-	println '-' * 60
+	doLast {
+		println '-' * 60
+		println version
+		println '-' * 60
+		configurations.testCompile.sort().each { File file -> println file.name }
+		println '-' * 60
+	}
 }
 
 plugindev {
