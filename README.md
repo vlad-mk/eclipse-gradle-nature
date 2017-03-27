@@ -27,11 +27,11 @@ buildscript {
 }
 
 plugins {
-    id 'net.vlad.eclipse-gradle-nature' version '0.1.4'
+    id 'net.vlad.eclipse-gradle-nature' version '0.2.0'
 }
 ```
 
-If using gradle < 2.1:
+Using old gradle style:
 
 ```groovy
 buildscript {
@@ -40,7 +40,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.vlad', name: 'eclipse-gradle-nature', version: '0.1.4'
+        classpath group: 'net.vlad', name: 'eclipse-gradle-nature', version: '0.2.0'
     }
 }
 

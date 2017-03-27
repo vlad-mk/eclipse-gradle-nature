@@ -7,9 +7,9 @@ plugins {
 
 
 
-sourceCompatibility = 1.7
+sourceCompatibility = 1.8
 group = 'net.vlad'
-version = '0.1.4'
+version = '0.2.0'
 
 /*
 jar {
@@ -37,7 +37,7 @@ dependencies {
 	//compile gradleApi()
 	//compile localGroovy()
 	
-	//testCompile group: 'junit', name: 'junit', version: '4.+'
+	testCompile group: 'junit', name: 'junit', version: '4.+'
 }
 
 task resolve {
@@ -63,7 +63,7 @@ plugindev {
 	authorName 'Vladislav Mikerin'
 	authorEmail 'vladislav.mk@gmail.com'
 	projectUrl 'https://github.com/vlad-mk/eclipse-gradle-nature'
-	projectInceptionYear '2015'
+	projectInceptionYear '2017'
 	done() // do not omit this
 }
 

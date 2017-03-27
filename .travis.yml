@@ -4,5 +4,5 @@ install: ./gradlew assemble
 script: ./gradlew check
 
 jdk:
-  - openjdk7
+  - openjdk8
 
