@@ -2,7 +2,7 @@ plugins {
 	id 'groovy'
 	id 'eclipse'
 	id 'java-gradle-plugin'
-	id 'nu.studer.plugindev' version '1.0.3'
+	id 'nu.studer.plugindev' version '1.0.6'
  }
 
 
@@ -61,16 +61,16 @@ plugindev {
 	pluginLicenses 'Apache-2.0'
 	pluginTags 'gradle', 'plugin', 'eclipse'
 	authorId 'vlad-mk'
-	authorName 'Vladislav Mikerin'
-	authorEmail 'vladislav.mk@gmail.com'
+	authorName (project.ext.has('authorName') ? project.ext.bintrayUser : 'xxxxx')
+	authorEmail (project.ext.has('authorEmail') ? project.ext.bintrayUser : 'xxxxx')
 	projectUrl 'https://github.com/vlad-mk/eclipse-gradle-nature'
 	projectInceptionYear '2017'
 	done() // do not omit this
 }
 
 bintray {
-	user = project.ext.has('bintrayUser') ? project.ext.bintrayUser : ''
-	key = project.ext.has('bintrayApiKey') ? project.ext.bintrayApiKey : ''
+	user = project.ext.has('bintrayUser') ? project.ext.bintrayUser : 'xxxxx'
+	key = project.ext.has('bintrayApiKey') ? project.ext.bintrayApiKey : 'xxxxx'
 	pkg.repo = 'gradle-plugins'
 	dryRun = false
 }
