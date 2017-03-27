@@ -27,7 +27,7 @@ buildscript {
 }
 
 plugins {
-    id 'net.vlad.eclipse-gradle-nature' version '0.2.0'
+    id 'net.vlad.eclipse-gradle-nature' version '0.2.1'
 }
 ```
 
@@ -40,7 +40,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.vlad', name: 'eclipse-gradle-nature', version: '0.2.0'
+        classpath group: 'net.vlad', name: 'eclipse-gradle-nature', version: '0.2.1'
     }
 }
 
@@ -57,3 +57,6 @@ Plugin adds following tasks to the `IDE tasks` group
 
 which will be called by `eclise` and `cleanEclipse` tasks
 
+so usage:
+
+gradle eclipse

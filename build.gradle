@@ -74,13 +74,13 @@ task resolve {
 pluginBundle {
 	website = 'https://github.com/vlad-mk/eclipse-gradle-nature'
 	vcsUrl = 'https://github.com/vlad-mk/eclipse-gradle-nature'
-	description = 'Gradle plugin that adds gradle nature to an eclipse project.'
-	tags = ['release-0.2.0']
+	description = 'Addon for ecplise plugin, adds Buildship nature while generating the eclipse project'
+	tags = ['release-0.2.1']
 
 	plugins {
 		eclipseGradleNature {
 			id = 'net.vlad.eclipse-gradle-nature'
-			displayName = 'Gradle Nature plugin for ecplise'
+			displayName = 'Gradle(Buildship) nature plugin for ecplise'
 		}
 	}
 }
