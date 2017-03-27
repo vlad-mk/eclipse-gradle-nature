@@ -2,14 +2,14 @@ plugins {
 	id 'groovy'
 	id 'eclipse'
 	id 'java-gradle-plugin'
-	id 'nu.studer.plugindev' version '1.0.3'
+	id 'nu.studer.plugindev' version '1.0.6'
  }
 
 
 
-sourceCompatibility = 1.7
+sourceCompatibility = 1.8
 group = 'net.vlad'
-version = '0.1.4'
+version = '0.2.0'
 
 /*
 jar {
@@ -37,19 +37,20 @@ dependencies {
 	//compile gradleApi()
 	//compile localGroovy()
 	
-	//testCompile group: 'junit', name: 'junit', version: '4.+'
+	testCompile group: 'junit', name: 'junit', version: '4.+'
 }
 
 task resolve {
 	//testCompile includes all other dependencies
 	description 'Resolve all configurations'
 	group 'Other'
-} << {
-	println '-' * 60
-	println version
-	println '-' * 60
-	configurations.testCompile.sort().each { File file -> println file.name }
-	println '-' * 60
+	doLast {
+		println '-' * 60
+		println version
+		println '-' * 60
+		configurations.testCompile.sort().each { File file -> println file.name }
+		println '-' * 60
+	}
 }
 
 plugindev {
@@ -60,16 +61,16 @@ plugindev {
 	pluginLicenses 'Apache-2.0'
 	pluginTags 'gradle', 'plugin', 'eclipse'
 	authorId 'vlad-mk'
-	authorName 'Vladislav Mikerin'
-	authorEmail 'vladislav.mk@gmail.com'
+	authorName (project.ext.has('authorName') ? project.ext.bintrayUser : 'xxxxx')
+	authorEmail (project.ext.has('authorEmail') ? project.ext.bintrayUser : 'xxxxx')
 	projectUrl 'https://github.com/vlad-mk/eclipse-gradle-nature'
-	projectInceptionYear '2015'
+	projectInceptionYear '2017'
 	done() // do not omit this
 }
 
 bintray {
-	user = project.ext.has('bintrayUser') ? project.ext.bintrayUser : ''
-	key = project.ext.has('bintrayApiKey') ? project.ext.bintrayApiKey : ''
+	user = project.ext.has('bintrayUser') ? project.ext.bintrayUser : 'xxxxx'
+	key = project.ext.has('bintrayApiKey') ? project.ext.bintrayApiKey : 'xxxxx'
 	pkg.repo = 'gradle-plugins'
 	dryRun = false
 }
