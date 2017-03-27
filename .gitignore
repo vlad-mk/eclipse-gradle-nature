@@ -1,5 +1,6 @@
 .gradle
 .idea
+*.ignore
 /build/
 /target/
 /.nb-gradle/private/

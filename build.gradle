@@ -1,17 +1,31 @@
+buildscript {
+	repositories {
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
+	}
+	dependencies {
+		classpath "com.gradle.publish:plugin-publish-plugin:0.9.7"
+	}
+}
+
+
 plugins {
 	id 'groovy'
 	id 'eclipse'
 	id 'java-gradle-plugin'
-	id 'nu.studer.plugindev' version '1.0.6'
+	id 'maven-publish'
  }
 
 
+apply plugin: "com.gradle.plugin-publish"
 
 sourceCompatibility = 1.8
 group = 'net.vlad'
-version = '0.2.0'
+version = '0.2.1'
 
-/*
+
+
 jar {
     manifest {
         attributes 'EclipseGradleNaturePlugin': 'Gradle Nature Plugin for eclipse', 'Implementation-Version': version
@@ -27,15 +41,19 @@ sourceSets
 		groovy.srcDir 'src/test/groovy'
 	}
 }
-*/
+
+
+repositories {
+    mavenCentral()
+}
 
 project.setBuildDir 'target/build'
 eclipse.classpath.defaultOutputDir = file 'target/build-eclipse'
 
 
 dependencies {
-	//compile gradleApi()
-	//compile localGroovy()
+	compile gradleApi()
+	compile localGroovy()
 	
 	testCompile group: 'junit', name: 'junit', version: '4.+'
 }
@@ -53,25 +71,17 @@ task resolve {
 	}
 }
 
-plugindev {
-	pluginId = 'net.vlad.eclipse-gradle-nature'
-	pluginName 'eclipse-gradle-nature'
-	pluginImplementationClass 'net.vlad.plugin.EclipseGradleNaturePlugin'
-	pluginDescription 'Gradle plugin that adds gradle nature to an eclipse project.'
-	pluginLicenses 'Apache-2.0'
-	pluginTags 'gradle', 'plugin', 'eclipse'
-	authorId 'vlad-mk'
-	authorName (project.ext.has('authorName') ? project.ext.bintrayUser : 'xxxxx')
-	authorEmail (project.ext.has('authorEmail') ? project.ext.bintrayUser : 'xxxxx')
-	projectUrl 'https://github.com/vlad-mk/eclipse-gradle-nature'
-	projectInceptionYear '2017'
-	done() // do not omit this
-}
+pluginBundle {
+	website = 'https://github.com/vlad-mk/eclipse-gradle-nature'
+	vcsUrl = 'https://github.com/vlad-mk/eclipse-gradle-nature'
+	description = 'Gradle plugin that adds gradle nature to an eclipse project.'
+	tags = ['release-0.2.0']
 
-bintray {
-	user = project.ext.has('bintrayUser') ? project.ext.bintrayUser : 'xxxxx'
-	key = project.ext.has('bintrayApiKey') ? project.ext.bintrayApiKey : 'xxxxx'
-	pkg.repo = 'gradle-plugins'
-	dryRun = false
+	plugins {
+		eclipseGradleNature {
+			id = 'net.vlad.eclipse-gradle-nature'
+			displayName = 'Gradle Nature plugin for ecplise'
+		}
+	}
 }
 
