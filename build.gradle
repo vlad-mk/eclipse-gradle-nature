@@ -3,6 +3,7 @@ buildscript {
 		maven {
 			url "https://plugins.gradle.org/m2/"
 		}
+		jcenter()
 	}
 	dependencies {
 		classpath "com.gradle.publish:plugin-publish-plugin:0.9.7"
@@ -15,15 +16,20 @@ plugins {
 	id 'eclipse'
 	id 'java-gradle-plugin'
 	id 'maven-publish'
+	id "com.gradle.plugin-publish" version "0.9.7"
+	id "com.jfrog.bintray" version "1.7"
  }
 
 
-apply plugin: "com.gradle.plugin-publish"
+//apply plugin: "com.gradle.plugin-publish"
 
 sourceCompatibility = 1.8
 group = 'net.vlad'
-version = '0.2.1'
+version = '0.2.2'
 
+ext {
+	githubUrl = 'https://github.com/vlad-mk/eclipse-gradle-nature'
+}
 
 
 jar {
@@ -71,17 +77,109 @@ task resolve {
 	}
 }
 
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+javadoc {
+    include '**/*.java'
+    include '**/*.groovy'
+}
+
+task javadocJar(type: Jar, dependsOn: [javadoc, groovydoc]) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+    from groovydoc.destinationDir
+}
+
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
 pluginBundle {
-	website = 'https://github.com/vlad-mk/eclipse-gradle-nature'
-	vcsUrl = 'https://github.com/vlad-mk/eclipse-gradle-nature'
+	website = githubUrl
+	vcsUrl =  githubUrl
 	description = 'Addon for ecplise plugin, adds Buildship nature while generating the eclipse project'
-	tags = ['release-0.2.1']
+	tags = ["release-${project.version}"]
 
 	plugins {
 		eclipseGradleNature {
-			id = 'net.vlad.eclipse-gradle-nature'
+			id = "${group}.${project.name}" //'net.vlad.eclipse-gradle-nature'
 			displayName = 'Gradle(Buildship) nature plugin for ecplise'
 		}
 	}
 }
 
+def pomConfig = {
+	description 'Gradle eclipse plugin addon, to add buildship nature to eclipse project'
+	name	 	project.name
+	url 		githubUrl
+
+	scm {
+		url githubUrl
+		connection "scm:git:${githubUrl}"
+	}
+	licenses {
+		license {
+			name 'The Apache Software License, Version 2.0'
+			url 'http://www.apache.org/license/LICENSE-2.0.txt'
+		}
+	}
+	developers {
+		developer {
+			id 'vlad-mk'
+			name 'Vladislav Mikerin'
+//			email 'your@mail.address'
+		}
+	}
+}
+
+publishing {
+    publications {
+        plugin(MavenPublication) {
+            from components.java
+			artifact 	sourcesJar
+			artifact 	javadocJar
+//			artifact 	groovydocJar
+            groupId 	project.group
+            artifactId 	project.name
+            version 	project.version
+			pom.withXml {
+				asNode().children().last() + pomConfig
+			}
+        }
+    }
+}
+
+bintray {
+	user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : 'xxxxx'
+	key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : 'xxxxx'
+	configurations = ['archives']
+	publications = ['plugin']
+	pkg {
+		repo 	 = 'gradle-plugins'
+		name 	 = project.name
+		desc 	 = 'Gradle eclipse plugin addon, to add buildship nature to eclipse project'
+		userOrg  = 'vlad-mk'
+		licenses = ['Apache-2.0']
+		vcsUrl 	 = githubUrl
+		labels	 = ['gradle', 'plugin', 'eclips']
+		publicDownloadNumbers = true
+		version {
+			name = "${project.version}"
+//			desc = 'Gradle Bintray Plugin 1.0 final'
+			vcsTag = "release-${project.version}"
+//			attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
+		}
+
+	}
+	dryRun = false
+}
+
+
+bintrayUpload {
+	dependsOn "build", "generatePomFileForPluginPublication"
+}
