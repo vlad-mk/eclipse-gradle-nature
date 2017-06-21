@@ -13,6 +13,7 @@ import org.gradle.plugins.ide.eclipse.model.Classpath
 import org.gradle.internal.reflect.Instantiator
 
 import javax.inject.Inject
+import java.nio.file.Paths
 
 
 /** add gradle nature to eclipse project */
@@ -93,6 +94,11 @@ class EclipseGradleNaturePlugin extends IdePlugin {
                                     </attributes>
                                 </classpathentry>
                             */
+                            def path = (project.eclipse.classpath.defaultOutputDir.path - project.buildDir.parentFile.parent).substring(1)
+                            if(entry.path  ==~ /.*\/test\/.*/)
+                                entry.output = Paths.get(path, "test")
+                            else
+                                entry.output = Paths.get(path, "main")
                             entry.entryAttributes.put('FROM_GRADLE_MODEL', 'true')
                             log.info("++++++++ entry ++++  " + entry)
                         }
