@@ -93,6 +93,10 @@ class EclipseGradleNaturePlugin extends IdePlugin {
                                     </attributes>
                                 </classpathentry>
                             */
+                            if(entry.path  ==~ /.*\/test\/.*/)
+                                entry.output = project.eclipse.classpath.defaultOutputDir + "/test"
+                            else
+                                entry.output = project.eclipse.classpath.defaultOutputDir + "/main"
                             entry.entryAttributes.put('FROM_GRADLE_MODEL', 'true')
                             log.info("++++++++ entry ++++  " + entry)
                         }
