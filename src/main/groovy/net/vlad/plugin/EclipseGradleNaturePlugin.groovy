@@ -94,7 +94,8 @@ class EclipseGradleNaturePlugin extends IdePlugin {
                                     </attributes>
                                 </classpathentry>
                             */
-                            def path = (project.eclipse.classpath.defaultOutputDir.path - project.buildDir.parentFile.parent).substring(1)
+
+                            def path = (project.eclipse.classpath.defaultOutputDir.path-project.projectDir.path).substring(1)
                             if(entry.path  ==~ /.*\/test\/.*/)
                                 entry.output = Paths.get(path, "test")
                             else
