@@ -1,3 +1,7 @@
+0.2.4 (2018/02/28)
+------------------
+* sort classpath entries: test path goes up
+
 0.2.0 (2017/03/27)
 ------------------
 * gradle v.3.4+

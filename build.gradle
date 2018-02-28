@@ -25,7 +25,7 @@ plugins {
 
 sourceCompatibility = 1.8
 group = 'net.vlad'
-version = '0.2.3'
+version = '0.2.4'
 
 ext {
 	githubUrl = 'https://github.com/vlad-mk/eclipse-gradle-nature'

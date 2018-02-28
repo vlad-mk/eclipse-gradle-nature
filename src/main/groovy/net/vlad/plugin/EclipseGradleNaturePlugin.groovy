@@ -85,6 +85,14 @@ class EclipseGradleNaturePlugin extends IdePlugin {
             if (project.eclipse.classpath.file) {
                 project.eclipse.classpath.file.whenMerged { Classpath classpath ->
                     classpath.entries.removeAll { entry -> entry.kind == 'lib' }
+                    classpath.entries = classpath.entries.sort {x,y ->
+                        if(x.kind == 'src' && x instanceof SourceFolder
+                                && y.kind == 'src' && y instanceof SourceFolder) {
+                            if (y.path.contains('test')) return 1;
+                            if (x.path.contains('test')) return -1;
+                        }
+                        return 0;
+                    }
                     classpath.entries.each { entry ->
                         if(entry.kind == 'src' && entry instanceof SourceFolder) {
                             /*
