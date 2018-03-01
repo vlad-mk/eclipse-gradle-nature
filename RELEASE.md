@@ -1,3 +1,7 @@
+0.2.5 (2018/03/01)
+------------------
+* eclipse workaround
+
 0.2.4 (2018/02/28)
 ------------------
 * sort classpath entries: test path goes up

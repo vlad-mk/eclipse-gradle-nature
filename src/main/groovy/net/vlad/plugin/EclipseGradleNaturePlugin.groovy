@@ -81,10 +81,14 @@ class EclipseGradleNaturePlugin extends IdePlugin {
         project.plugins.withType(JavaBasePlugin) {
 
             project.eclipse.classpath.containers "org.eclipse.buildship.core.gradleclasspathcontainer"
+			//workaround if called from eclipse
+			boolean runInEclipse = System.getProperties().getProperty("eclipse.launcher") != null;
 
             if (project.eclipse.classpath.file) {
                 project.eclipse.classpath.file.whenMerged { Classpath classpath ->
-                    classpath.entries.removeAll { entry -> entry.kind == 'lib' }
+
+					if(!runInEclipse)
+                  		classpath.entries.removeAll { entry -> entry.kind == 'lib' }
                     classpath.entries = classpath.entries.sort {x,y ->
                         if(x.kind == 'src' && x instanceof SourceFolder
                                 && y.kind == 'src' && y instanceof SourceFolder) {
@@ -108,7 +112,7 @@ class EclipseGradleNaturePlugin extends IdePlugin {
                                 entry.output = Paths.get(path, "test")
                             else
                                 entry.output = Paths.get(path, "main")
-                            entry.entryAttributes.put('FROM_GRADLE_MODEL', 'true')
+                            //entry.entryAttributes.put('FROM_GRADLE_MODEL', 'true')
                             log.info("++++++++ entry ++++  " + entry)
                         }
                     }
